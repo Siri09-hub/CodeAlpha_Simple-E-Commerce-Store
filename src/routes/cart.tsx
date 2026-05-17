@@ -3,6 +3,10 @@ import { useCart } from "@/contexts/CartContext";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Minus, Plus, X } from "lucide-react";
+import { formatINR } from "@/lib/format";
+
+const FREE_SHIPPING_OVER = 5000;
+const SHIPPING_FEE = 99;
 
 export const Route = createFileRoute("/cart")({ component: CartPage });
 
