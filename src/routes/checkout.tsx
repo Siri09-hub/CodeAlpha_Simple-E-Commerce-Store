@@ -31,7 +31,7 @@ function CheckoutPage() {
     </main>
   );
 
-  const shipping = total > 100 ? 0 : 9;
+  const shipping = total > 5000 ? 0 : 99;
   const grand = total + shipping;
 
   const placeOrder = async (e: React.FormEvent) => {
