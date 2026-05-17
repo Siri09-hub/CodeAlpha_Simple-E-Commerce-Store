@@ -94,16 +94,16 @@ function CheckoutPage() {
           {items.map((it) => (
             <li key={it.id} className="flex justify-between">
               <span>{it.product.name} × {it.quantity}</span>
-              <span>${(it.product.price * it.quantity).toFixed(2)}</span>
+              <span>{formatINR(it.product.price * it.quantity)}</span>
             </li>
           ))}
         </ul>
         <div className="mt-4 space-y-1 border-t pt-4 text-sm">
-          <div className="flex justify-between"><span className="text-muted-foreground">Subtotal</span><span>${total.toFixed(2)}</span></div>
-          <div className="flex justify-between"><span className="text-muted-foreground">Shipping</span><span>{shipping ? `$${shipping.toFixed(2)}` : "Free"}</span></div>
+          <div className="flex justify-between"><span className="text-muted-foreground">Subtotal</span><span>{formatINR(total)}</span></div>
+          <div className="flex justify-between"><span className="text-muted-foreground">Shipping</span><span>{shipping ? formatINR(shipping) : "Free"}</span></div>
         </div>
         <div className="mt-3 flex justify-between border-t pt-3 font-semibold">
-          <span>Total</span><span>${grand.toFixed(2)}</span>
+          <span>Total</span><span>{formatINR(grand)}</span>
         </div>
       </aside>
     </main>
