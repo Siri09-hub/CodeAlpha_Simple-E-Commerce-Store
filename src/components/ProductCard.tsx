@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Star, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/contexts/CartContext";
+import { formatINR } from "@/lib/format";
 
 export type Product = {
   id: string;
