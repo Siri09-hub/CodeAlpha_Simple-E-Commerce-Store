@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { Pencil, Trash2, Plus } from "lucide-react";
+import { formatINR } from "@/lib/format";
 
 export const Route = createFileRoute("/admin")({ component: AdminPage });
 
