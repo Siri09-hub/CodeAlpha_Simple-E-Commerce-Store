@@ -15,6 +15,7 @@ export const Route = createFileRoute("/product/$id")({
 function ProductPage() {
   const { id } = Route.useParams();
   const { addToCart } = useCart();
+  const [active, setActive] = useState(0);
 
   const { data: p, isLoading } = useQuery({
     queryKey: ["product", id],
