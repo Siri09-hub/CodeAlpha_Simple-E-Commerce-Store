@@ -44,7 +44,7 @@ function ProductPage() {
         <div>
           <div className="aspect-[4/5] overflow-hidden rounded-2xl bg-muted">
             {(() => {
-              const gallery: string[] = (p.images && p.images.length ? p.images : [p.image_url]).filter(Boolean);
+              const gallery: string[] = ((p.images && p.images.length ? p.images : [p.image_url]) as (string | null)[]).filter((s): s is string => !!s);
               const src = gallery[active] ?? gallery[0];
               return src ? <img src={src} alt={p.name} className="h-full w-full object-cover" /> : null;
             })()}
