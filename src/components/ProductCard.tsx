@@ -48,7 +48,7 @@ export function ProductCard({ p }: { p: Product }) {
             <span className="capitalize">{p.category}</span>
           </div>
         </div>
-        <p className="font-semibold">${Number(p.price).toFixed(0)}</p>
+        <p className="font-semibold">{formatINR(p.price)}</p>
       </div>
     </article>
   );
