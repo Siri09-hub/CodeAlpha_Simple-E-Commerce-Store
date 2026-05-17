@@ -51,13 +51,13 @@ function OrdersPage() {
                 </div>
                 <span className="rounded-full bg-secondary px-3 py-1 text-xs capitalize">{o.status}</span>
                 <p className="text-sm text-muted-foreground">{new Date(o.created_at).toLocaleDateString()}</p>
-                <p className="font-semibold">${Number(o.total).toFixed(2)}</p>
+                <p className="font-semibold">{formatINR(o.total)}</p>
               </div>
               <ul className="mt-4 space-y-1 border-t pt-4 text-sm">
                 {o.order_items?.map((it: { id: string; product_name: string; quantity: number; price: number }) => (
                   <li key={it.id} className="flex justify-between">
                     <span>{it.product_name} × {it.quantity}</span>
-                    <span>${(Number(it.price) * it.quantity).toFixed(2)}</span>
+                    <span>{formatINR(Number(it.price) * it.quantity)}</span>
                   </li>
                 ))}
               </ul>
