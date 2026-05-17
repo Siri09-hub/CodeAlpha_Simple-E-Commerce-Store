@@ -52,7 +52,7 @@ function CartPage() {
                     <X className="size-4" />
                   </button>
                 </div>
-                <p className="text-sm text-muted-foreground">${Number(it.product?.price).toFixed(2)}</p>
+                <p className="text-sm text-muted-foreground">{formatINR(Number(it.product?.price))}</p>
                 <div className="mt-auto flex items-center justify-between">
                   <div className="flex items-center rounded-md border">
                     <Button variant="ghost" size="icon" className="size-8" onClick={() => updateQty(it.id, it.quantity - 1)}>
@@ -63,7 +63,7 @@ function CartPage() {
                       <Plus className="size-3" />
                     </Button>
                   </div>
-                  <p className="font-semibold">${(it.quantity * Number(it.product?.price)).toFixed(2)}</p>
+                  <p className="font-semibold">{formatINR(it.quantity * Number(it.product?.price))}</p>
                 </div>
               </div>
             </li>
@@ -73,12 +73,12 @@ function CartPage() {
       <aside className="h-fit rounded-xl border bg-card p-6">
         <h2 className="font-display text-xl">Summary</h2>
         <div className="mt-4 space-y-2 text-sm">
-          <div className="flex justify-between"><span className="text-muted-foreground">Subtotal</span><span>${total.toFixed(2)}</span></div>
-          <div className="flex justify-between"><span className="text-muted-foreground">Shipping</span><span>{total > 100 ? "Free" : "$9.00"}</span></div>
+          <div className="flex justify-between"><span className="text-muted-foreground">Subtotal</span><span>{formatINR(total)}</span></div>
+          <div className="flex justify-between"><span className="text-muted-foreground">Shipping</span><span>{total > FREE_SHIPPING_OVER ? "Free" : formatINR(SHIPPING_FEE)}</span></div>
         </div>
         <div className="mt-4 flex justify-between border-t pt-4 text-base font-semibold">
           <span>Total</span>
-          <span>${(total + (total > 100 ? 0 : 9)).toFixed(2)}</span>
+          <span>{formatINR(total + (total > FREE_SHIPPING_OVER ? 0 : SHIPPING_FEE))}</span>
         </div>
         <Button asChild className="mt-6 w-full" size="lg"><Link to="/checkout">Checkout</Link></Button>
       </aside>
