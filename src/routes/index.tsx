@@ -46,7 +46,7 @@ function Home() {
   return (
     <main className="mx-auto max-w-7xl px-4 sm:px-6">
       <section className="py-16 sm:py-24">
-        <p className="text-sm uppercase tracking-widest text-muted-foreground">Est. 2026 · Free shipping over $100</p>
+        <p className="text-sm uppercase tracking-widest text-muted-foreground">Est. 2026 · Free shipping over ₹5,000</p>
         <h1 className="mt-4 text-5xl font-semibold sm:text-7xl">Objects, made to last.</h1>
         <p className="mt-4 max-w-xl text-lg text-muted-foreground">
           A small, evolving catalog of everyday essentials — selected for craft, materials, and quiet design.

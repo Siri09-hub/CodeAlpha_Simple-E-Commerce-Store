@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { Pencil, Trash2, Plus } from "lucide-react";
+import { formatINR } from "@/lib/format";
 
 export const Route = createFileRoute("/admin")({ component: AdminPage });
 
@@ -103,7 +104,7 @@ function AdminPage() {
                   <span className="font-medium">{p.name}</span>
                 </td>
                 <td className="p-3 capitalize text-muted-foreground">{p.category}</td>
-                <td className="p-3">${Number(p.price).toFixed(2)}</td>
+                <td className="p-3">{formatINR(p.price)}</td>
                 <td className="p-3">{p.stock}</td>
                 <td className="p-3 text-right">
                   <Button variant="ghost" size="icon" onClick={() => {

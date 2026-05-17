@@ -5,6 +5,8 @@ import { useCart } from "@/contexts/CartContext";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Star, ChevronLeft } from "lucide-react";
+import { useState } from "react";
+import { formatINR } from "@/lib/format";
 
 export const Route = createFileRoute("/product/$id")({
   component: ProductPage,
@@ -13,6 +15,7 @@ export const Route = createFileRoute("/product/$id")({
 function ProductPage() {
   const { id } = Route.useParams();
   const { addToCart } = useCart();
+  const [active, setActive] = useState(0);
 
   const { data: p, isLoading } = useQuery({
     queryKey: ["product", id],
@@ -38,8 +41,27 @@ function ProductPage() {
         <ChevronLeft className="size-4" /> Back to shop
       </Link>
       <div className="grid gap-10 md:grid-cols-2">
-        <div className="aspect-[4/5] overflow-hidden rounded-2xl bg-muted">
-          {p.image_url && <img src={p.image_url} alt={p.name} className="h-full w-full object-cover" />}
+        <div>
+          <div className="aspect-[4/5] overflow-hidden rounded-2xl bg-muted">
+            {(() => {
+              const gallery: string[] = ((p.images && p.images.length ? p.images : [p.image_url]) as (string | null)[]).filter((s): s is string => !!s);
+              const src = gallery[active] ?? gallery[0];
+              return src ? <img src={src} alt={p.name} className="h-full w-full object-cover" /> : null;
+            })()}
+          </div>
+          {p.images && p.images.length > 1 && (
+            <div className="mt-3 grid grid-cols-4 gap-2">
+              {p.images.map((src: string, i: number) => (
+                <button
+                  key={i}
+                  onClick={() => setActive(i)}
+                  className={`aspect-square overflow-hidden rounded-lg bg-muted ring-2 transition ${active === i ? "ring-foreground" : "ring-transparent hover:ring-border"}`}
+                >
+                  <img src={src} alt={`${p.name} ${i + 1}`} className="h-full w-full object-cover" />
+                </button>
+              ))}
+            </div>
+          )}
         </div>
         <div className="flex flex-col">
           <p className="text-sm uppercase tracking-widest text-muted-foreground">{p.category}</p>
@@ -51,7 +73,7 @@ function ProductPage() {
           </div>
           <p className="mt-6 text-muted-foreground">{p.description}</p>
           <div className="mt-8 flex items-end justify-between border-t pt-6">
-            <span className="text-3xl font-semibold">${Number(p.price).toFixed(2)}</span>
+            <span className="text-3xl font-semibold">{formatINR(p.price)}</span>
             <Button size="lg" onClick={() => addToCart(p.id)} disabled={p.stock < 1}>
               {p.stock < 1 ? "Sold out" : "Add to cart"}
             </Button>

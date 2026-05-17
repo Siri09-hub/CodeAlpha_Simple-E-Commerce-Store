@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Star, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/contexts/CartContext";
+import { formatINR } from "@/lib/format";
 
 export type Product = {
   id: string;
@@ -47,7 +48,7 @@ export function ProductCard({ p }: { p: Product }) {
             <span className="capitalize">{p.category}</span>
           </div>
         </div>
-        <p className="font-semibold">${Number(p.price).toFixed(0)}</p>
+        <p className="font-semibold">{formatINR(p.price)}</p>
       </div>
     </article>
   );

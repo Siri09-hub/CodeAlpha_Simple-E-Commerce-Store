@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import { formatINR } from "@/lib/format";
 
 export const Route = createFileRoute("/checkout")({ component: CheckoutPage });
 
@@ -30,7 +31,7 @@ function CheckoutPage() {
     </main>
   );
 
-  const shipping = total > 100 ? 0 : 9;
+  const shipping = total > 5000 ? 0 : 99;
   const grand = total + shipping;
 
   const placeOrder = async (e: React.FormEvent) => {
@@ -79,12 +80,12 @@ function CheckoutPage() {
             <Input id="city" required value={form.city} onChange={(e) => setForm({ ...form, city: e.target.value })} />
           </div>
           <div>
-            <Label htmlFor="zip">ZIP</Label>
+            <Label htmlFor="zip">PIN code</Label>
             <Input id="zip" required value={form.zip} onChange={(e) => setForm({ ...form, zip: e.target.value })} />
           </div>
         </div>
         <Button type="submit" size="lg" className="w-full" disabled={submitting}>
-          {submitting ? "Placing order…" : `Place order · $${grand.toFixed(2)}`}
+          {submitting ? "Placing order…" : `Place order · ${formatINR(grand)}`}
         </Button>
       </form>
       <aside className="h-fit rounded-xl border bg-card p-6">
@@ -93,16 +94,16 @@ function CheckoutPage() {
           {items.map((it) => (
             <li key={it.id} className="flex justify-between">
               <span>{it.product.name} × {it.quantity}</span>
-              <span>${(it.product.price * it.quantity).toFixed(2)}</span>
+              <span>{formatINR(it.product.price * it.quantity)}</span>
             </li>
           ))}
         </ul>
         <div className="mt-4 space-y-1 border-t pt-4 text-sm">
-          <div className="flex justify-between"><span className="text-muted-foreground">Subtotal</span><span>${total.toFixed(2)}</span></div>
-          <div className="flex justify-between"><span className="text-muted-foreground">Shipping</span><span>{shipping ? `$${shipping.toFixed(2)}` : "Free"}</span></div>
+          <div className="flex justify-between"><span className="text-muted-foreground">Subtotal</span><span>{formatINR(total)}</span></div>
+          <div className="flex justify-between"><span className="text-muted-foreground">Shipping</span><span>{shipping ? formatINR(shipping) : "Free"}</span></div>
         </div>
         <div className="mt-3 flex justify-between border-t pt-3 font-semibold">
-          <span>Total</span><span>${grand.toFixed(2)}</span>
+          <span>Total</span><span>{formatINR(grand)}</span>
         </div>
       </aside>
     </main>
