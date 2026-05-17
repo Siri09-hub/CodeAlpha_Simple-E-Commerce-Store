@@ -80,7 +80,7 @@ function CheckoutPage() {
             <Input id="city" required value={form.city} onChange={(e) => setForm({ ...form, city: e.target.value })} />
           </div>
           <div>
-            <Label htmlFor="zip">ZIP</Label>
+            <Label htmlFor="zip">PIN code</Label>
             <Input id="zip" required value={form.zip} onChange={(e) => setForm({ ...form, zip: e.target.value })} />
           </div>
         </div>
