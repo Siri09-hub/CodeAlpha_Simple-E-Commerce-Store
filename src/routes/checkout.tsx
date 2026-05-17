@@ -85,7 +85,7 @@ function CheckoutPage() {
           </div>
         </div>
         <Button type="submit" size="lg" className="w-full" disabled={submitting}>
-          {submitting ? "Placing order…" : `Place order · $${grand.toFixed(2)}`}
+          {submitting ? "Placing order…" : `Place order · ${formatINR(grand)}`}
         </Button>
       </form>
       <aside className="h-fit rounded-xl border bg-card p-6">
