@@ -131,6 +131,7 @@ export type Database = {
           description: string | null
           id: string
           image_url: string | null
+          images: string[]
           name: string
           price: number
           rating: number
@@ -143,6 +144,7 @@ export type Database = {
           description?: string | null
           id?: string
           image_url?: string | null
+          images?: string[]
           name: string
           price: number
           rating?: number
@@ -155,6 +157,7 @@ export type Database = {
           description?: string | null
           id?: string
           image_url?: string | null
+          images?: string[]
           name?: string
           price?: number
           rating?: number
