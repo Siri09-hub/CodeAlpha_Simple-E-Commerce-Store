@@ -5,6 +5,8 @@ import { useCart } from "@/contexts/CartContext";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Star, ChevronLeft } from "lucide-react";
+import { useState } from "react";
+import { formatINR } from "@/lib/format";
 
 export const Route = createFileRoute("/product/$id")({
   component: ProductPage,
