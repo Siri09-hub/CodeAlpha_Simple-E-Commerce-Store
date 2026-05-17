@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import { formatINR } from "@/lib/format";
 
 export const Route = createFileRoute("/checkout")({ component: CheckoutPage });
 
