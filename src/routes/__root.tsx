@@ -56,6 +56,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "A small shop of objects we love." },
       { property: "og:title", content: "Maison — Curated essentials" },
       { property: "og:description", content: "A small shop of objects we love." },
+      { name: "twitter:title", content: "Maison — Curated essentials" },
+      { name: "twitter:description", content: "A small shop of objects we love." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/cc71fe34-0e03-472b-8044-a971f65b1d9b/id-preview-8a1fa750--7f5587aa-d977-4678-9c9e-c5343e3ac29f.lovable.app-1778994467200.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/cc71fe34-0e03-472b-8044-a971f65b1d9b/id-preview-8a1fa750--7f5587aa-d977-4678-9c9e-c5343e3ac29f.lovable.app-1778994467200.png" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:type", content: "website" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
